@@ -1,0 +1,28 @@
+// Project Structure
+digraph {
+	rankdir=LR
+	API [label="UserScheduleAPI.API
+(Web API)
+- Startuje aplikację
+- Kontrolery
+- Obsługuje HTTP"]
+	App [label="UserScheduleAPI.Application
+(Class Library)
+- CQRS
+- Use Cases
+- Walidacja"]
+	Domain [label="UserScheduleAPI.Domain
+(Class Library)
+- Encje
+- Logika biznesowa"]
+	Infra [label="UserScheduleAPI.Infrastructure
+(Class Library)
+- EF Core
+- Repozytoria
+- Dostęp do bazy"]
+	API -> App [label="korzysta z"]
+	API -> Infra [label="korzysta z"]
+	App -> Domain [label="korzysta z"]
+	Infra -> Domain [label="korzysta z"]
+	Infra -> App [label="opcjonalnie korzysta z"]
+}

@@ -1,0 +1,31 @@
+// User Schedule App ERD
+digraph {
+	User [label="User
+- Id (PK)
+- FirstName
+- LastName
+- Address
+- MaxShiftsPerWeek?"]
+	SpecialInfo [label="SpecialInfo
+- Id (PK)
+- Name"]
+	UserSpecialInfo [label="UserSpecialInfo
+- UserId (FK)
+- SpecialInfoId (FK)"]
+	Shift [label="Shift
+- Id (PK)
+- UserId (FK)
+- Date
+- StartTime
+- EndTime"]
+	ShiftRestriction [label="ShiftRestriction
+- Id (PK)
+- ShiftId (FK)
+- StartTime
+- EndTime
+- Reason"]
+	User -> UserSpecialInfo [label="1:N"]
+	SpecialInfo -> UserSpecialInfo [label="1:N"]
+	User -> Shift [label="1:N"]
+	Shift -> ShiftRestriction [label="1:N"]
+}
