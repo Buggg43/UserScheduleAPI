@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="UserScheduleAPI.Application.csproj" />
-    <ProjectReference Include="..\UserScheduleAPI.Infrastructure\UserScheduleAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\UserScheduleAPI.Domain\UserScheduleAPI.Domain.csproj" />
   </ItemGroup>
 
