@@ -1,5 +1,8 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using UserScheduleAPI.Infrastructure.Persistence;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-
+builder.Services.AddValidatorsFromAssemblyContaining<Program>(); // register validators
+builder.Services.AddFluentValidationAutoValidation(); // the same old MVC pipeline behavior
 
 var app = builder.Build();
 
