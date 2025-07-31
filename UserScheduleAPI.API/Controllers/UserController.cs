@@ -17,11 +17,57 @@ namespace UserScheduleAPI.API.Controllers
         {
             _context = context;
         }
-        [HttpGet] 
+        [HttpGet]
         public async Task<ActionResult> GetUsers()
         {
             var users = await _context.Users.ToListAsync();
             return Ok(users);
+        }
+        [HttpGet("{id}/special-info")]
+        public async Task<IActionResult> GetUserSpecialInfo(Guid id)
+        {
+            if (id == Guid.Empty)
+                return BadRequest();
+
+            var userInfo = await _context.UserSpecialInfos.Where(x => x.UserId == id).ToListAsync();
+            if (userInfo == null)
+                return NotFound();
+
+
+            var infoList = new List<SpecialInfoDto>();
+            foreach (var i in userInfo)
+            {
+                var info = await _context.SpecialInfos.FindAsync(i.SpecialInfoId);
+                var userSpecialInfo = new SpecialInfoDto {
+                    Name = info.Name,
+                    Description = info.Description
+                };
+
+                infoList.Add(userSpecialInfo); 
+            }
+
+            return Ok(infoList);
+        }
+        [HttpPost("{id}/special-info")]
+        public async Task<IActionResult> AddUserSpecialInfo(Guid id, [FromBody]AssignSpecialInfoDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (user == null)
+                return NotFound();
+            if (dto == null)
+                return BadRequest();
+
+            var newInfo = new UserSpecialInfo()
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                User = user,
+                SpecialInfoId = dto.SpecialInfoId,
+            };
+            await _context.UserSpecialInfos.AddAsync(newInfo);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(AddUserSpecialInfo), new { id = newInfo.Id }, newInfo.SpecialInfo);
         }
         [HttpPost]
         public async Task<ActionResult<User>> RegisterUser([FromBody] RegisterUserDto dto)
@@ -68,6 +114,21 @@ namespace UserScheduleAPI.API.Controllers
             }
 
             _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpDelete("{id}/special-info/{specialInfoId}")]
+        public async Task<IActionResult> DeleteSpecialInfo(Guid id, Guid specialInfoId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(b => b.Id == id);
+            if (user == null)
+                return NotFound();
+            var info = await _context.UserSpecialInfos.FirstOrDefaultAsync(b => b.Id == specialInfoId);
+            if (info == null)
+                return NotFound();
+
+            _context.UserSpecialInfos.Remove(info);
             await _context.SaveChangesAsync();
 
             return NoContent();
