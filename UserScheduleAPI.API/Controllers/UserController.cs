@@ -43,7 +43,7 @@ namespace UserScheduleAPI.API.Controllers
                     Description = info.Description
                 };
 
-                infoList.Add(userSpecialInfo); 
+                infoList.Add(userSpecialInfo);
             }
 
             return Ok(infoList);
