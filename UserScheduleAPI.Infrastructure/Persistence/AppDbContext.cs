@@ -17,6 +17,8 @@ namespace UserScheduleAPI.Infrastructure.Persistence
         public DbSet<SpecialInfo> SpecialInfos { get; set; }
         public DbSet<UserSpecialInfo> UserSpecialInfos { get; set; }
         public DbSet<ShiftRestriction> ShiftRestrictions { get; set; }
+        public DbSet<Patient> Patient { get; set; }
+        public DbSet<PatientSpecialInfo> PatientSpecialInfo { get; set; }
 
     }
 }
