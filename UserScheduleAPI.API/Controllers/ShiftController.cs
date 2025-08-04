@@ -74,7 +74,12 @@ namespace UserScheduleAPI.API.Controllers
             _context.ShiftRestrictions.Add(shiftRestriction);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAllShiftRestrictions), new { id = shiftRestriction.Id }, shiftRestriction);
+            return CreatedAtAction(
+                nameof(GetAllShiftRestrictions),
+                new { shiftId = shiftId },
+                shiftRestriction
+            );
+
         }
         [HttpPut("{shiftId}/restrictions/{id}")]
         public async Task<IActionResult> UpdateShiftRestrictions(int id, int shiftId, [FromBody] UpdateShiftRestrictionDto dto)
