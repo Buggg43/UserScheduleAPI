@@ -13,7 +13,8 @@ namespace UserScheduleAPI.Domain.Entities
         public string LastName { get; set; }
         public string? Address { get; set; }
         public int? Age { get; set; }
-        public List<UserSpecialInfo> UserSpecialInfos { get; set; }
+        public ICollection<UserSpecialInfo>? SpecialTags { get; set; }
+
 
     }
 }
