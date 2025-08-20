@@ -26,6 +26,8 @@
   <ItemGroup>
     <ProjectReference Include="..\UserScheduleAPI.Application\UserScheduleAPI.Application.csproj" />
     <ProjectReference Include="..\UserScheduleAPI.Infrastructure\UserScheduleAPI.Infrastructure.csproj" />
+    <ProjectReference Include="..\UserScheduleAPI.Domain\UserScheduleAPI.Domain.csproj" />
   </ItemGroup>
+
 
 </Project>

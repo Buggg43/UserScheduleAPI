@@ -10,9 +10,9 @@ namespace UserScheduleAPI.Application.Scheduling
 {
     public class BuildFreeWindows
     {
-        public static IReadOnlyList<TimeWindow> BuildFreeWindows(Shift shift)
+        public static IReadOnlyList<TimeWindow> BuildFreeWindow(Shift shift)
         {
-
+            return null;
         }
 
     }

@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UserScheduleAPI.API.DTOs;
-using UserScheduleAPI.Infrastructure.Persistence;
+using UserScheduleAPI.Application.DTOs;
+using UserScheduleAPI;
 
-namespace UserScheduleAPI.API.Services
+namespace UserScheduleAPI.Application.Scheduling
 {
     public interface IScheduleGenerator
     {
         Task<GeneratedScheduleDto> Generate(GenerateScheduleRequestDto request);
     }
-    public class ScheduleGenerator  : IScheduleGenerator
+    public class ScheduleGenerator : IScheduleGenerator
     {
         private readonly AppDbContext _context;
-        public ScheduleGenerator(AppDbContext context) 
+        public ScheduleGenerator(AppDbContext context)
         {
             _context = context;
         }
@@ -27,8 +27,6 @@ namespace UserScheduleAPI.API.Services
                 .Include(s => s.Visits)
                 .Where(s => s.Date >= start && s.Date <= end)
                 .ToListAsync();
-
-
 
             var dto = new GeneratedScheduleDto();
 

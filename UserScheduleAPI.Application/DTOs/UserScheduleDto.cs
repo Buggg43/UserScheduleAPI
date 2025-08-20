@@ -1,6 +1,6 @@
 ﻿using UserScheduleAPI.Domain.Entities;
 
-namespace UserScheduleAPI.API.DTOs
+namespace UserScheduleAPI.Application.DTOs
 {
     public class UserScheduleDto
     {

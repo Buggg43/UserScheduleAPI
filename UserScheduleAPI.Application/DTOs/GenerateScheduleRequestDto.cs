@@ -1,4 +1,4 @@
-﻿namespace UserScheduleAPI.API.DTOs
+﻿namespace UserScheduleAPI.Application.DTOs
 {
     public class GenerateScheduleRequestDto
     {
