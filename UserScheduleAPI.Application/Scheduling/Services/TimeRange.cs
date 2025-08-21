@@ -1,4 +1,4 @@
-﻿namespace UserScheduleAPI.API.Services
+﻿namespace UserScheduleAPI.Application.Services
 {
     public class TimeRange
     {

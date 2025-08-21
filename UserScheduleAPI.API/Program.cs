@@ -2,7 +2,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using UserScheduleAPI.API.Services;
+using UserScheduleAPI.Application.Scheduling;
 using UserScheduleAPI.Infrastructure.Persistence;
+using UserScheduleAPI.Infrastructure.Scheduling;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>(); // register validators
 builder.Services.AddFluentValidationAutoValidation(); // the same old MVC pipeline behavior
-builder.Services.AddScoped<IScheduleGenerator, ScheduleGenerator>();
+builder.Services.AddScoped<IScheduleGenerator, EfScheduleGenerator>();
 
 var app = builder.Build();
 

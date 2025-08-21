@@ -1,14 +1,15 @@
-﻿using UserScheduleAPI.API.DTOs;
-using static UserScheduleAPI.API.Services.SlotBuilder;
+﻿using UserScheduleAPI.Application.DTOs;
+using UserScheduleAPI.Application.Services;
+using static UserScheduleAPI.Application.Scheduling.Services.SlotBuilder;
 
 namespace UserScheduleAPI.API.Services
 {
     public class RestrictionFilter
     {
-        public IEnumerable<SlotDto> MarkRestrictedSlots(IEnumerable<SlotDto> slots, IEnumerable<TimeRange> restrictions)
+        public async Task<IEnumerable<SlotDto>> MarkRestrictedSlots(IEnumerable<SlotDto> slots, IEnumerable<TimeRange> restrictions)
         {
             if (slots == null || restrictions == null)
-                return null;
+                return slots;
 
             foreach(var slot in slots)
             {

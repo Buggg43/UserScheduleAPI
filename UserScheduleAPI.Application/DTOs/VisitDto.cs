@@ -10,7 +10,7 @@ namespace UserScheduleAPI.Application.DTOs
         public DateTime Date { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-        public List<string> Tags { get; set; }
+        public List<PatientSpecialInfo> Tags { get; set; }
         public string? Notes { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿using UserScheduleAPI.API.DTOs;
+﻿using UserScheduleAPI.Application.DTOs;
 
-namespace UserScheduleAPI.API.Services
+namespace UserScheduleAPI.Application.Scheduling.Services
 {
     public class SlotBuilder
     {
@@ -11,20 +11,20 @@ namespace UserScheduleAPI.API.Services
         }
         public IEnumerable<SlotDto> BuildSlots(DateTime start, DateTime end, int visitLengthMinutes)
         {
-            if(visitLengthMinutes<15)
+            if (visitLengthMinutes < 15)
                 return Enumerable.Empty<SlotDto>();
-            if(start >= end)
+            if (start >= end)
                 return Enumerable.Empty<SlotDto>();
 
             var slots = new List<SlotDto>();
             DateTime startVisit = start;
             DateTime endVisit = start.AddMinutes(visitLengthMinutes);
-            while(endVisit <= end)
+            while (endVisit <= end)
             {
                 var slot = new SlotDto();
 
-                slot.StartTime= startVisit;
-                slot.EndTime= endVisit;
+                slot.StartTime = startVisit;
+                slot.EndTime = endVisit;
 
                 slots.Add(slot);
 

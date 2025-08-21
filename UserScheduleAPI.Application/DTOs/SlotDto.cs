@@ -1,6 +1,6 @@
-﻿using static UserScheduleAPI.API.Services.SlotBuilder;
+﻿using static UserScheduleAPI.Application.Scheduling.Services.SlotBuilder;
 
-namespace UserScheduleAPI.API.DTOs
+namespace UserScheduleAPI.Application.DTOs
 {
     public class SlotDto
     {
